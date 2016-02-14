@@ -4,4 +4,5 @@
 /storage/files/*
 /public/antvel-bower/*
 .env
+.idea
 composer.lock

@@ -21,6 +21,9 @@ class AdminTableSeeder extends Seeder
         Person::create([
             'first_name' => 'Admin',
             'last_name'  => 'root',
+            'birthday'   => $faker->dateTimeBetween('-40 years', '-16 years'),
+            'sex'        => 'male',
+            'home_phone'   => $faker->phoneNumber,
             'user'       => [
                 'nickname'    => 'admin',
                 'email'       => 'admin@admin.com',
@@ -38,6 +41,9 @@ class AdminTableSeeder extends Seeder
         $admin = Person::create([
             'first_name' => 'AntVel',
             'last_name'  => 'Developer',
+            'birthday'   => $faker->dateTimeBetween('-40 years', '-16 years'),
+            'sex'        => 'male',
+            'home_phone'   => $faker->phoneNumber,
             'user'       => [
                 'nickname' => 'dev',
                 'email'    => 'dev@antvel.com',
@@ -65,11 +71,13 @@ class AdminTableSeeder extends Seeder
             ],
         ])->user;
         //buyer
-        $buyer = Person::create([
+
+		$buyer = Person::create([
             'first_name' => $faker->firstName,
             'last_name'  => $faker->lastName,
             'birthday'   => $faker->dateTimeBetween('-40 years', '-16 years'),
             'sex'        => 'male',
+            'home_phone'   => $faker->phoneNumber,
             'user'       => [
                 'nickname' => 'antvelbuyer',
                 'email'    => 'buyer@antvel.com',
@@ -79,5 +87,6 @@ class AdminTableSeeder extends Seeder
                 'facebook' => 'buyer',
             ],
         ])->user;
+
     }
 }
