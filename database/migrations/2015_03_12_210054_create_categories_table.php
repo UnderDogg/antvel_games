@@ -21,10 +21,10 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id')->unsigned()->nullable();
-            $table->string('name', 50);
-            $table->string('description', 100);
-            $table->string('icon');
-            $table->string('image');
+            $table->string('name', 50)->nullable();
+            $table->string('description', 100)->nullable();
+            $table->string('icon')->nullable();
+            $table->string('image')->nullable();
             $table->boolean('status')->default(1);
             $table->enum('type', array_keys(trans('globals.type_categories')));
 

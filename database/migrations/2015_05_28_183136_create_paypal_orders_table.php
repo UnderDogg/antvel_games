@@ -20,9 +20,9 @@ class CreatePaypalOrdersTable extends Migration
     {
         Schema::create('paypal_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->string('payment_id');
-            $table->integer('amount')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->string('payment_id')->nullable();
+            $table->integer('amount')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

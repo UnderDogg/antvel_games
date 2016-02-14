@@ -19,8 +19,8 @@ class CreateFreeproductOrderTable extends Migration
     public function up()
     {
         Schema::create('freeproduct_order', function (Blueprint $table) {
-            $table->integer('freeproduct_id')->unsigned()->index();
-            $table->integer('order_id')->unsigned()->index();
+            $table->integer('freeproduct_id')->unsigned()->index()->nullable();
+            $table->integer('order_id')->unsigned()->index()->nullable();
 
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('freeproduct_id')->references('id')->on('freeproducts');

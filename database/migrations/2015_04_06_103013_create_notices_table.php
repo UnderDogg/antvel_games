@@ -20,10 +20,10 @@ class CreateNoticesTable extends Migration
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('sender_id')->unsigned();
-            $table->integer('action_type_id')->unsigned();
-            $table->integer('source_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('sender_id')->unsigned()->nullable();
+            $table->integer('action_type_id')->unsigned()->nullable();
+            $table->integer('source_id')->unsigned()->nullable();
             $table->enum('status', ['new', 'unread', 'read']);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

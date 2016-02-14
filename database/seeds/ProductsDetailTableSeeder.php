@@ -21,6 +21,7 @@ class ProductsDetailTableSeeder extends Seeder
             'help_message'     => '',
             'type_products'    => 'all',
             'max_num_values'   => 5,
+            'status'            => 'active',
         ]);
 
         ProductDetail::create([
@@ -31,6 +32,7 @@ class ProductsDetailTableSeeder extends Seeder
             'help_message'     => '',
             'type_products'    => 'key',
             'max_num_values'   => 1,
+          'status'            => 'active',
         ]);
 
         ProductDetail::create([
@@ -41,6 +43,7 @@ class ProductsDetailTableSeeder extends Seeder
             'help_message'     => '',
             'type_products'    => 'key',
             'max_num_values'   => 1,
+          'status'            => 'active',
         ]);
 
         ProductDetail::create([
@@ -51,6 +54,7 @@ class ProductsDetailTableSeeder extends Seeder
             'help_message'     => '',
             'type_products'    => 'item',
             'max_num_values'   => 1,
+          'status'            => 'active',
         ]);
 
         ProductDetail::create([
@@ -61,6 +65,7 @@ class ProductsDetailTableSeeder extends Seeder
             'help_message'     => '',
             'type_products'    => 'item',
             'max_num_values'   => 1,
+          'status'            => 'active',
         ]);
 
         ProductDetail::create([
@@ -71,6 +76,7 @@ class ProductsDetailTableSeeder extends Seeder
             'help_message'     => '',
             'type_products'    => 'item',
             'max_num_values'   => 1,
+          'status'            => 'active',
         ]);
 
         ProductDetail::create([
@@ -81,6 +87,7 @@ class ProductsDetailTableSeeder extends Seeder
             'help_message'     => '',
             'type_products'    => 'all',
             'max_num_values'   => 1,
+          'status'            => 'active',
         ]);
     }
 }

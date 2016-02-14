@@ -19,7 +19,7 @@ class ProductsTableSeeder extends Seeder
         $faker = Faker::create();
         $businesses = Business::get();
         $numCategories = DB::table('categories')->count();
-        for ($i = 0; $i < 150; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $price = $faker->numberBetween(1, 99);
             $stock = $faker->numberBetween(20, 50);
             $id = Product::create([
@@ -50,7 +50,7 @@ class ProductsTableSeeder extends Seeder
                 'tags'      => $faker->word.','.$faker->word.','.$faker->word,
             ]);
             if ($faker->numberBetween(0, 1)) {
-                $percentage = $faker->randomElement([10, 15, 25, 35, 50]);
+                $percentage = $faker->randomElement([1, 2, 3, 4, 5]);
                 ProductOffer::create([
                     'product_id' => $id->id,
                     'day_start'  => $faker->dateTime(),

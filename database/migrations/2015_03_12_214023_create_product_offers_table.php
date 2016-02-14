@@ -20,10 +20,10 @@ class CreateProductOffersTable extends Migration
     {
         Schema::create('product_offers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id')->unsigned();
-            $table->dateTime('day_start');
-            $table->dateTime('day_end');
-            $table->double('percentage', 2, 2);
+            $table->integer('product_id')->unsigned()->nullable();
+            $table->dateTime('day_start')->nullable();
+            $table->dateTime('day_end')->nullable();
+            $table->string('percentage', 22)->nullable();
             $table->double('price')->default(0);
             $table->integer('quantity')->default(0);
             $table->foreign('product_id')->references('id')->on('products');

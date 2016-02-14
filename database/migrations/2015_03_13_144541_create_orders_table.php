@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->integer('address_id')->unsigned()->nullable();
             $table->integer('seller_id')->unsigned()->nullable();
             $table->enum('status', array_keys(trans('globals.order_status')));

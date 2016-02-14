@@ -20,10 +20,10 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('action_type_id')->unsigned();
-            $table->integer('source_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->string('comment', 500);
+            $table->integer('action_type_id')->unsigned()->nullable();
+            $table->integer('source_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->string('comment', 500)->nullable();
             $table->timestamps();
 
             $table->foreign('action_type_id')->references('id')->on('action_types');

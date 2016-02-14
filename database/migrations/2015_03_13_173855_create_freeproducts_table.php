@@ -20,16 +20,16 @@ class CreateFreeproductsTable extends Migration
     {
         Schema::create('freeproducts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
-            $table->string('description');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->integer('participation_cost');
-            $table->integer('min_participants');
-            $table->integer('max_participants');
-            $table->integer('max_participations_per_user');
-            $table->integer('draw_number');
-            $table->date('draw_date');
+            $table->integer('user_id')->unsigned()->index()->nullable();
+            $table->string('description')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->integer('participation_cost')->nullable();
+            $table->integer('min_participants')->nullable();
+            $table->integer('max_participants')->nullable();
+            $table->integer('max_participations_per_user')->nullable();
+            $table->integer('draw_number')->nullable();
+            $table->date('draw_date')->nullable();
             $table->boolean('status')->default(1);
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

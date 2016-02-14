@@ -29,7 +29,7 @@ class CreateProductsTable extends Migration
             $table->string('name', 100);
             $table->string('description', 500);
             $table->double('price', 10, 2);
-            $table->integer('stock');
+            $table->integer('stock')->default(0);
             $table->integer('low_stock')->default(0);
             $table->string('bar_code')->nullable();
             $table->string('brand', 30)->nullable();
@@ -38,8 +38,8 @@ class CreateProductsTable extends Migration
             $table->json('features');
             $table->double('rate_val', 10, 2)->nullable();
             $table->integer('rate_count')->nullable();
-            $table->integer('sale_counts')->unsigned();
-            $table->integer('view_counts')->unsigned();
+            $table->integer('sale_counts')->unsigned()->nullable();
+            $table->integer('view_counts')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();

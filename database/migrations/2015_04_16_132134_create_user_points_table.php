@@ -20,10 +20,10 @@ class CreateUserPointsTable extends Migration
     {
         Schema::create('user_points', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('action_type_id')->unsigned();
-            $table->integer('source_id')->unsigned();
-            $table->integer('points');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('action_type_id')->unsigned()->nullable();
+            $table->integer('source_id')->unsigned()->nullable();
+            $table->integer('points')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('action_type_id')->references('id')->on('action_types');

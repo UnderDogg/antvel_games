@@ -20,10 +20,10 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id')->unsigned();
-            $table->integer('product_id')->unsigned();
-            $table->double('price', 10, 2);
-            $table->integer('quantity');
+            $table->integer('order_id')->unsigned()->nullable();
+            $table->integer('product_id')->unsigned()->nullable();
+            $table->string('price', 20)->nullable();
+            $table->integer('quantity')->nullable();
             $table->boolean('status')->default(1);
             $table->dateTime('delivery_date')->nullable();
             $table->integer('rate')->nullable();

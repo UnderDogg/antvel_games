@@ -20,8 +20,8 @@ class CreateFreeproductParticipantsTable extends Migration
     {
         Schema::create('freeproduct_participants', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('freeproduct_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('freeproduct_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->enum('status', array_keys(trans('globals.participant_status')));
 
             $table->foreign('user_id')->references('id')->on('users');

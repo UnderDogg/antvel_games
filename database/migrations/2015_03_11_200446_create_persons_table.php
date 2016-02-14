@@ -20,11 +20,11 @@ class CreatePersonsTable extends Migration
     {
         Schema::create('persons', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->primary();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->date('birthday');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->date('birthday')->nullable();
             $table->enum('sex', array_keys(trans('globals.person_sex')));
-            $table->string('home_phone');
+            $table->string('home_phone')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

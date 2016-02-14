@@ -17,7 +17,7 @@ class AddressesTableSeeder extends Seeder
     {
         $faker = Faker::create();
         //Category
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 3; $i++) {
             $user = User::select(['id'])->orderByRaw('RAND()')->first();
 
             $address = Address::create([
@@ -27,7 +27,7 @@ class AddressesTableSeeder extends Seeder
                 'line2'        => $faker->streetAddress,
                 'phone'        => $faker->phoneNumber,
                 'name_contact' => $faker->streetName,
-                'zipcode'      => $faker->postcode,
+                'zipcode'      => '234564',
                 'city'         => $faker->city,
                 'country'      => $faker->country,
                 'state'        => $faker->state,
