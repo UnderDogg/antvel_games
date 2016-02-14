@@ -76,7 +76,7 @@ return [
 
         //Message
         'saved'                        => 'Profile was successfully saved!',
-        'are_you_sure'                 => 'Are you sure you want to desactivate your account?',
+        'are_you_sure'                 => 'Are you sure you want\ to desactivate your account?',
         'profile_disabled'             => 'The profile has been disabled',
         'profile_enabled'              => 'The profile has been enabled',
         'disable_account_description'  => 'Disabling your account, your profile will be deleted as well.',
