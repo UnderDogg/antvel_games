@@ -11,7 +11,6 @@ namespace app\Http\Controllers\Admin;
 use App\Category;
 use App\Helpers\categoriesHelper;
 use App\Helpers\File;
-use OpenSkill\Datatable\Providers\CollectionProvider;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
@@ -69,15 +68,13 @@ class CategoriesController extends Controller
       return json_encode($categories);
     }
 
-    $t = Datatable::make(new CollectionProvider($categories))
-      ->columns('id') // show the id column of the user model
-      ->columns('name', null, Searchable::NONE(), Orderable::NONE()) // also show the full name of the user, but do not allow searching or ordering of the column
-      ->build();
-
-
-    if ($t->shouldHandle()) {
-      return $t->handleRequest();
-    }
+    $t = Datatable::collection(User::all())
+      ->showColumns('id')
+      ->addColumn('name',function($model)
+      {
+        return $model->getPresenter()->yourProperty;
+      }
+      )->make();
 
 
     //return view('admin.category.index', compact('categories'));

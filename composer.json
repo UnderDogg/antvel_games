@@ -11,7 +11,8 @@
 		"nicolaslopezj/searchable": "1.*",
 		"laravel/socialite": "^2.0",
 		"davejamesmiller/laravel-breadcrumbs": "^3.0",
-		"filp/whoops": "~1.0"
+		"filp/whoops": "~1.0",
+		"chumper/datatable": "dev-develop"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

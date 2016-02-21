@@ -198,6 +198,9 @@ return [
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 
 
+		Chumper\Datatable\DatatableServiceProvider::class,
+
+
         /*
          * Providers only for developers
          */
@@ -264,6 +267,7 @@ return [
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
 
 
+		'Datatable' => 'Chumper\Datatable\Facades\DatatableFacade',
         /*
          * App Aliases
          */

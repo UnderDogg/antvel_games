@@ -193,9 +193,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
   Route::resource('products', 'ProductDetailsController');
   Route::resource('games', 'GamesController');
 
+  Route::get('games', array('as'=>'api.games', 'uses'=> 'Admin\GamesController@getDatatable'));
+
+
   Route::resource('devpub', 'DevPubController');
 
-  Route::resource('gameGroup', 'GamesGroupController');
+  Route::resource('gamegroup', 'GamesGroupController');
 
   Route::get('products/create', ['uses' => 'ProductsController@create', 'as' => 'products.create']);
   Route::get('games/create', ['uses' => 'GamesController@create', 'as' => 'games.create']);
