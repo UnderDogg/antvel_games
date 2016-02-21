@@ -33,11 +33,16 @@ Route::group(['prefix' => 'home'], function () {
 //Product list
 Route::get('products', ['uses' => 'ProductsController@index', 'as' => 'products']);
 
+Route::get('games', ['uses' => 'GamesController@index', 'as' => 'games']);
+
+
 //Orders Reports
 Route::get('orders/report/{type}/{filter}', ['uses' => 'OrdersController@reports', 'as' => 'orders.report']);
 
 //Busqueda General
-Route::get('search/', 'ProductsController@searchAll');
+Route::get('searchproducts/', 'ProductsController@searchAll');
+
+Route::get('search/', 'GamesController@searchAll');
 
 Route::get('categories', 'CategoriesController@index');
 
@@ -79,9 +84,15 @@ Route::group(['prefix' => 'user', 'roles' => array_keys(trans('globals.roles')),
 
   Route::get('product/save/{product}', ['uses' => 'OrdersController@saveForLater', 'as' => 'orders.save_for_later']);
 
+  Route::get('games/save/{game}', ['uses' => 'OrdersController@saveForLater', 'as' => 'orders.save_for_later']);
+
   Route::get('orders/moveFrom/{origin}/to/{destination}/{productId}', ['uses' => 'OrdersController@moveFromOrder', 'as' => 'orders.move_from_order']);
 
+  Route::get('orders/moveFrom/{origin}/to/{destination}/{gameId}', ['uses' => 'OrdersController@moveFromOrder', 'as' => 'orders.move_from_order']);
+
   Route::get('orders/addToOrder/{orderId}/{productId}', ['uses' => 'OrdersController@addToOrderById', 'as' => 'orders.add_to_order_by_id']);
+
+  Route::get('orders/addToOrder/{orderId}/{gameId}', ['uses' => 'OrdersController@addToOrderById', 'as' => 'orders.add_to_order_by_id']);
 
   Route::get('orders/checkOut/', ['uses' => 'OrdersController@checkOut', 'as' => 'orders.check_out']);
 
@@ -103,8 +114,9 @@ Route::group(['prefix' => 'user', 'roles' => array_keys(trans('globals.roles')),
   Route::get('orders/rate/{orderId}', ['uses' => 'OrdersController@rateOrder', 'as' => 'orders.rate_order']);
 
   //Route used to login an user and send it back to the product show
+  //Route used to login an user and send it back to the game show
 
-  Route::get('logAndShow/{productId}', ['uses' => 'ProductsController@show', 'as' => 'products.log_and_show']);
+  Route::get('logAndShow/{gameId}', ['uses' => 'GamesController@show', 'as' => 'games.log_and_show']);
 
   Route::get('orders/close/{order_id}', ['uses' => 'OrdersController@closeOrder', 'as' => 'orders.close']);
 
@@ -164,7 +176,7 @@ Route::group(['roles' => ['business', 'nonprofit', 'admin'], 'middleware' => ['a
 
 
 
-// Acceso solo a Wpanel
+// Acceso solo a Adminpanel
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
   Route::get('dashboard', ['as' => 'dashboard.index', 'uses' => 'DashboardController@index']);
 
@@ -173,17 +185,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
   Route::resource('category', 'CategoriesController');
 
+  Route::get('categories', ['uses' => 'Admin\CategoriesController@showList', 'as' => 'admin.category.index']);
+
   Route::post('category/upload', ['uses' => 'CategoriesController@upload', 'as' => 'category.upload']);
 
-  Route::get('categories', ['uses' => 'CategoriesController@showList', 'as' => 'admin.category.index']);
 
   Route::resource('products', 'ProductDetailsController');
+  Route::resource('games', 'GamesController');
 
-  Route::resource('devpub', 'CompanyController');
+  Route::resource('devpub', 'DevPubController');
 
-  Route::resource('productsGroup', 'ProductsGroupController');
+  Route::resource('gameGroup', 'GamesGroupController');
 
   Route::get('products/create', ['uses' => 'ProductsController@create', 'as' => 'products.create']);
+  Route::get('games/create', ['uses' => 'GamesController@create', 'as' => 'games.create']);
 
   Route::get('products/{id}/edit', ['uses' => 'ProductsController@edit', 'as' => 'products.edit']);
 

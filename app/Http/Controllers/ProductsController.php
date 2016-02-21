@@ -30,24 +30,9 @@ use Illuminate\Support\Facades\Validator;
 class ProductsController extends Controller
 {
     private $form_rules = [
-        'amount'       => 'required|numeric|digits_between:1,11|min:0',
-        'bar_code'     => 'max:255',
         'category_id'  => 'required',
-        'condition'    => 'required',
-        'description'  => 'required|max:500',
         'key'          => 'required',
-        'key_software' => 'required',
-        'type'         => 'required',
-        'low_stock'    => 'numeric|digits_between:1,11|min:0',
         'name'         => 'required|max:100',
-        'price'        => 'required|numeric|digits_between:1,10|min:1',
-        'software'     => 'required',
-        'software_key' => 'required',
-        'stock'        => 'required|numeric|digits_between:1,11|min:0',
-    ];
-    private $panel = [
-        'left'   => ['width' => '2'],
-        'center' => ['width' => '10'],
     ];
 
     /**
@@ -80,7 +65,7 @@ class ProductsController extends Controller
          *
          * @var [type]
          */
-        $products = Product::select('id', 'category_id', 'name', 'price', 'description', 'condition', 'brand', 'rate_val', 'type', 'features', 'parent_id', 'tags')
+        $products = Product::select('id', 'category_id', 'name', 'parent_id', 'tags')
             ->search($search, false)
             ->refine($refine)
             ->free()

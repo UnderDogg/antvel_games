@@ -17,12 +17,6 @@ class CompanyController extends Controller
 {
     private $form_rules = [
         'name'    => 'required|max:100',
-        'slogan'  => 'required|max:150',
-    ];
-
-    private $panel = [
-        'left'   => ['width' => '2'],
-        'center' => ['width' => '10'],
     ];
 
     private $company_id = '1';
@@ -34,10 +28,6 @@ class CompanyController extends Controller
      */
     public function index(Request $request)
     {
-        $panel = [
-            'left'   => ['width' => '2'],
-            'center' => ['width' => '10'],
-        ];
         $company = Company::find(1);
 
         return view('company.index', compact('panel', 'company'));

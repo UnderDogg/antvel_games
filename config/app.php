@@ -193,13 +193,10 @@ return [
          * Providers Vendors
          */
         'Laravel\Socialite\SocialiteServiceProvider',
-        'Intervention\Image\ImageServiceProvider',
         'Collective\Html\HtmlServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
-        'Greggilbert\Recaptcha\RecaptchaServiceProvider',
-        'Barryvdh\DomPDF\ServiceProvider',
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
-        'Milon\Barcode\BarcodeServiceProvider',
+
 
         /*
          * Providers only for developers
@@ -266,8 +263,9 @@ return [
         'PDF'         => 'Barryvdh\DomPDF\Facade',
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
 
+
         /*
-         * App Alieses
+         * App Aliases
          */
 
         'Menu'      => 'App\Helpers\Menu',

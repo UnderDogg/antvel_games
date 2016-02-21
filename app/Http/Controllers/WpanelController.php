@@ -24,7 +24,7 @@ class WpanelController extends Controller
             'center' => ['width' => '10'],
         ];
 
-        return view('admin.admin.dashboard', compact('panel'));
+        return view('admin.dashboard', compact('panel'));
     }
 
     /**

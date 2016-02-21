@@ -6,16 +6,11 @@
 	"type": "project",
 	"require": {
 		"php": ">=5.5.9",
-		"laravel/framework": "5.1.8",
+		"laravel/framework": "^5.1",
 		"laravelcollective/html": "5.1.*",
 		"nicolaslopezj/searchable": "1.*",
 		"laravel/socialite": "^2.0",
-		"intervention/image": "^2.3",
-		"greggilbert/recaptcha": "dev-master",
-		"barryvdh/laravel-dompdf": "0.6.*",
-		"predis/predis": "^1.0",
 		"davejamesmiller/laravel-breadcrumbs": "^3.0",
-		"milon/barcode": "~1.0",
 		"filp/whoops": "~1.0"
 	},
 	"require-dev": {
