@@ -1,4 +1,4 @@
-@extends('layouts.wpanel')
+@extends('admin.layouts.admin_template')
 @section('title')@parent - {{ trans('globals.category') }} @stop
 @section('page_class') category-panel @stop
 @section('center_content')
@@ -79,7 +79,7 @@
                     return status_list[($scope.category.status!==undefined&&$scope.category.status)||1];
                 };
                 $scope.link=function(){
-                    return '{{ route('wpanel.category.edit','ID') }}'.replace('ID',$scope.category.id);
+                    return '{{ route('admin.category.edit','ID') }}'.replace('ID',$scope.category.id);
                 };
                 $scope.type=function(){
                     return type_list[$scope.category.type];

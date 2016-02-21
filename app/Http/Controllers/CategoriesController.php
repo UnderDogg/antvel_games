@@ -19,7 +19,6 @@ class CategoriesController extends Controller
 {
     private $form_rules = [
         'name'        => 'required|max:255',
-        'description' => 'required|max:255',
         'status'      => 'required',
         'type'        => 'required',
     ];
@@ -85,12 +84,8 @@ class CategoriesController extends Controller
             break;
         }
         $categories = $categories->get()->buildTree();
-        $panel = [
-            'left'   => ['width' => '2'],
-            'center' => ['width' => '10'],
-        ];
 
-        return view('categories.home', compact('categories', 'panel'));
+        return view('admin.category.index', compact('categories'));
     }
 
     public function viewMenus($id = '')
@@ -216,7 +211,7 @@ class CategoriesController extends Controller
         $category->update($data);
         \Session::flash('message', trans('categories.update_message'));
 
-        return redirect()->route('wpanel.category.show', [$id]);
+        return redirect()->route('admin.category.show', [$id]);
     }
 
     /**

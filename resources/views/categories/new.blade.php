@@ -1,11 +1,11 @@
-@extends('layouts.wpanel')
+@extends('admin.layouts.admin_template')
 @section('page_class') category-panel @stop
 @section('center_content')
 	@include('partial.message')
 	<div ng-controller="CategoryController" class="panel panel-default">
 		<div class="panel-heading"><h6><span class="glyphicon glyphicon-tasks"></span> {{ trans('categories.registration_category') }}</h6>	</div>
 		<div class="panel-body">
-			{!! Form::model(Request::all(),['route'=>'wpanel.category.store', 'class'=>'form-horizontal', 'role'=>'form']) !!}
+			{!! Form::model(Request::all(),['route'=>'admin.category.store', 'class'=>'form-horizontal', 'role'=>'form']) !!}
 				<div class="form-group">
 					<label class="col-md-4 control-label">{{ trans('globals.name') }}</label>
 					<div class="col-md-6">

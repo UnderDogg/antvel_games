@@ -28,7 +28,6 @@ class Category extends Model
     protected $fillable = [
         'category_id',
         'name',
-        'description',
         'icon',
         'image',
         'status',
@@ -47,7 +46,7 @@ class Category extends Model
      *
      * @var bool
      */
-    protected $family_tree = false;
+    protected $family_tree = true;
 
     /**
      * Override Collection Method.

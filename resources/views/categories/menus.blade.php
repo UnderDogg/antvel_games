@@ -1,4 +1,4 @@
-@extends('layouts.wpanel')
+@extends('admin.layouts.admin_template')
 @section('page_class') 'products_view' @stop
 @section('content')
 	<nav id="menu-top-category" class="clearfix">

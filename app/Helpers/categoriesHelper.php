@@ -134,7 +134,7 @@ class categoriesHelper
     }
 
         /**
-         *	return function that return html to the list of categories in wpanel.
+         *	return function that return html to the list of categories in admin.
          *
          *	@param array|collection $categories All Categories
          *
@@ -162,7 +162,7 @@ class categoriesHelper
                             '<span class="label label-danger">'.trans('globals.inactive').'</span>').'</div>
 		                    <div class="col-md-2"><span class="label label-default visible-xs-inline">'.trans('store.father').':</span>  '.$father.'</div>
 		                    <div class="col-md-2"><span class="label label-default visible-xs-inline">'.trans('globals.type').':</span>  '.$row['type'].'</div>
-		                    <div class="col-md-2"><a href="'.route('wpanel.category.edit', $row['id']).'">Edit</a></div>
+		                    <div class="col-md-2"><a href="'.route('admin.category.edit', $row['id']).'">Edit</a></div>
 		                </div>
 					</li>';
                 if (isset($row['sub']) && (count($row['sub']) > 0)) {

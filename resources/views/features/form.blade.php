@@ -1,4 +1,4 @@
-@extends('layouts.wpanel')
+@extends('admin.layouts.admin_template')
 @section('center_content')
 	@include('partial.message')
 	<div class="panel panel-default">
@@ -7,9 +7,9 @@
 		</div>
 		<div class="panel-body">
 			@if(!$edit)
-			{!! Form::model(Request::all(),['route'=>'wpanel.productsdetails.store', 'class'=>'form-horizontal', 'role'=>'form','ng-controller'=>'features_form']) !!}
+			{!! Form::model(Request::all(),['route'=>'admin.productsdetails.store', 'class'=>'form-horizontal', 'role'=>'form','ng-controller'=>'features_form']) !!}
 			@else
-			{!! Form::model($feature,['route'=>['wpanel.productsdetails.update',$feature['id']], 'class'=>'form-horizontal', 'role'=>'form','method'=>'PUT','ng-controller'=>'features_form']) !!}
+			{!! Form::model($feature,['route'=>['admin.productsdetails.update',$feature['id']], 'class'=>'form-horizontal', 'role'=>'form','method'=>'PUT','ng-controller'=>'features_form']) !!}
 			@endif
 				<div class="form-group">
 					<label class="col-md-4 control-label">{{ trans('globals.status') }}</label>

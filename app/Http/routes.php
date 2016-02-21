@@ -161,8 +161,13 @@ Route::group(['roles' => ['business', 'nonprofit', 'admin'], 'middleware' => ['a
   Route::post('freeproducts', ['uses' => 'FreeProductsController@store', 'as' => 'freeproducts.store']);
 });
 
+
+
+
 // Acceso solo a Wpanel
-Route::group(['prefix' => 'wpanel', 'roles' => 'admin', 'middleware' => ['auth', 'roles']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+  Route::get('dashboard', ['as' => 'dashboard.index', 'uses' => 'DashboardController@index']);
+
 
   Route::resource('/', 'WpanelController');
 
@@ -170,13 +175,11 @@ Route::group(['prefix' => 'wpanel', 'roles' => 'admin', 'middleware' => ['auth',
 
   Route::post('category/upload', ['uses' => 'CategoriesController@upload', 'as' => 'category.upload']);
 
-  Route::get('categories', ['uses' => 'CategoriesController@showList', 'as' => 'categories']);
+  Route::get('categories', ['uses' => 'CategoriesController@showList', 'as' => 'admin.category.index']);
 
-  Route::resource('productsdetails', 'ProductDetailsController');
+  Route::resource('products', 'ProductDetailsController');
 
-  Route::get('features', ['uses' => 'ProductDetailsController@index', 'as' => 'features']);
-
-  Route::resource('profile', 'CompanyController');
+  Route::resource('devpub', 'CompanyController');
 
   Route::resource('productsGroup', 'ProductsGroupController');
 
