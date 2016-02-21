@@ -14,8 +14,8 @@
 */
 
 Route::controllers([
-    'auth'     => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
+  'auth' => 'Auth\AuthController',
+  'password' => 'Auth\PasswordController',
 ]);
 
 //user account verification
@@ -26,7 +26,7 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::group(['prefix' => 'home'], function () {
 
-    Route::get('/', 'HomeController@index');
+  Route::get('/', 'HomeController@index');
 
 });
 
@@ -44,161 +44,172 @@ Route::get('categories', 'CategoriesController@index');
 //Acceso Usuario General(Admin,Persona,Empresa)
 Route::group(['prefix' => 'user', 'roles' => array_keys(trans('globals.roles')), 'middleware' => ['auth', 'roles']], function () {
 
-    Route::get('dashboard', 'UserController@dashBoard');
+  Route::get('dashboard', 'UserController@dashBoard');
 
-    Route::get('/', 'UserController@profile');
+  Route::get('/', 'UserController@profile');
 
-    Route::get('profile', 'UserController@profile');
+  Route::get('profile', 'UserController@profile');
 
-    Route::post('profile/save', 'UserController@saveProfile');
+  Route::post('profile/save', 'UserController@saveProfile');
 
-    Route::post('profile/disable', 'UserController@disableProfile');
+  Route::post('profile/disable', 'UserController@disableProfile');
 
-    Route::post('profile/enable', 'UserController@activeProfile');
+  Route::post('profile/enable', 'UserController@activeProfile');
 
-    Route::post('upload', 'UserController@upload');
+  Route::post('upload', 'UserController@upload');
 
-    //Address
-    Route::get('address/', 'AddressesController@index'); //list
+  //Address
+  Route::get('address/', 'AddressesController@index'); //list
 
-    Route::post('address/default', 'AddressesController@setDefault'); //set default
+  Route::post('address/default', 'AddressesController@setDefault'); //set default
 
-    Route::get('address/create', 'AddressesController@create');  //create form
+  Route::get('address/create', 'AddressesController@create');  //create form
 
-    Route::get('address/{id}/edit', 'AddressesController@edit'); //edit form
+  Route::get('address/{id}/edit', 'AddressesController@edit'); //edit form
 
-    Route::put('address/store', 'AddressesController@store'); //store
+  Route::put('address/store', 'AddressesController@store'); //store
 
-    Route::put('address/{id}', 'AddressesController@update'); //update
+  Route::put('address/{id}', 'AddressesController@update'); //update
 
-    Route::post('address/delete', 'AddressesController@destroy'); //delete
+  Route::post('address/delete', 'AddressesController@destroy'); //delete
 
-    //Store Cart
+  //Store Cart
 
-    Route::get('user/orders/updateQuantity/{orderId}/{orderDetailId}/{newValue}', ['uses' => 'OrdersController@updateQuantity', 'as' => 'orders.update_order_quantity']);
+  Route::get('user/orders/updateQuantity/{orderId}/{orderDetailId}/{newValue}', ['uses' => 'OrdersController@updateQuantity', 'as' => 'orders.update_order_quantity']);
 
-    Route::get('product/save/{product}', ['uses' => 'OrdersController@saveForLater', 'as' => 'orders.save_for_later']);
+  Route::get('product/save/{product}', ['uses' => 'OrdersController@saveForLater', 'as' => 'orders.save_for_later']);
 
-    Route::get('orders/moveFrom/{origin}/to/{destination}/{productId}', ['uses' => 'OrdersController@moveFromOrder', 'as' => 'orders.move_from_order']);
+  Route::get('orders/moveFrom/{origin}/to/{destination}/{productId}', ['uses' => 'OrdersController@moveFromOrder', 'as' => 'orders.move_from_order']);
 
-    Route::get('orders/addToOrder/{orderId}/{productId}', ['uses' => 'OrdersController@addToOrderById', 'as' => 'orders.add_to_order_by_id']);
+  Route::get('orders/addToOrder/{orderId}/{productId}', ['uses' => 'OrdersController@addToOrderById', 'as' => 'orders.add_to_order_by_id']);
 
-    Route::get('orders/checkOut/', ['uses' => 'OrdersController@checkOut', 'as' => 'orders.check_out']);
+  Route::get('orders/checkOut/', ['uses' => 'OrdersController@checkOut', 'as' => 'orders.check_out']);
 
-    Route::get('orders/checkOut/address/{addressId}', ['uses' => 'OrdersController@checkOutResume', 'as' => 'orders.check_out_address']);
+  Route::get('orders/checkOut/address/{addressId}', ['uses' => 'OrdersController@checkOutResume', 'as' => 'orders.check_out_address']);
 
-    Route::get('orders/placeOrder/{type}', ['uses' => 'OrdersController@placeOrder', 'as' => 'orders.place_order']);
+  Route::get('orders/placeOrder/{type}', ['uses' => 'OrdersController@placeOrder', 'as' => 'orders.place_order']);
 
-    Route::get('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
+  Route::get('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
 
-    //filtered by dates
-    Route::post('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
+  //filtered by dates
+  Route::post('orders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.show_orders']);
 
-    Route::get('orders/cancel/{orderId}', ['uses' => 'OrdersController@cancel', 'as' => 'orders.cancel']);
+  Route::get('orders/cancel/{orderId}', ['uses' => 'OrdersController@cancel', 'as' => 'orders.cancel']);
 
-    Route::get('orders/showSeller/{orderId}', ['uses' => 'OrdersController@showSellerOrder', 'as' => 'orders.show_seller_order']);
+  Route::get('orders/showSeller/{orderId}', ['uses' => 'OrdersController@showSellerOrder', 'as' => 'orders.show_seller_order']);
 
-    Route::get('orders/show/{orderId}', ['uses' => 'OrdersController@showOrder', 'as' => 'orders.show_order']);
+  Route::get('orders/show/{orderId}', ['uses' => 'OrdersController@showOrder', 'as' => 'orders.show_order']);
 
-    Route::get('orders/rate/{orderId}', ['uses' => 'OrdersController@rateOrder', 'as' => 'orders.rate_order']);
+  Route::get('orders/rate/{orderId}', ['uses' => 'OrdersController@rateOrder', 'as' => 'orders.rate_order']);
 
-    //Route used to login an user and send it back to the product show
+  //Route used to login an user and send it back to the product show
 
-    Route::get('logAndShow/{productId}', ['uses' => 'ProductsController@show', 'as' => 'products.log_and_show']);
+  Route::get('logAndShow/{productId}', ['uses' => 'ProductsController@show', 'as' => 'products.log_and_show']);
 
-    Route::get('orders/close/{order_id}', ['uses' => 'OrdersController@closeOrder', 'as' => 'orders.close']);
+  Route::get('orders/close/{order_id}', ['uses' => 'OrdersController@closeOrder', 'as' => 'orders.close']);
 
-    Route::get('modalSeeKeysPurchased', ['uses' => 'VirtualProductOrdersController@modalSeeKeysPurchased', 'as' => 'VirtualProductOrders.modalSeeKeysPurchased']);
+  Route::get('modalSeeKeysPurchased', ['uses' => 'VirtualProductOrdersController@modalSeeKeysPurchased', 'as' => 'VirtualProductOrders.modalSeeKeysPurchased']);
 
-    Route::get('showKeyVirtualProductPurchased/{idProduct}/{idOrder}', ['uses' => 'VirtualProductOrdersController@showKeyVirtualProductPurchased', 'as' => 'VirtualProductOrders.showKeyVirtualProductPurchased']);
+  Route::get('showKeyVirtualProductPurchased/{idProduct}/{idOrder}', ['uses' => 'VirtualProductOrdersController@showKeyVirtualProductPurchased', 'as' => 'VirtualProductOrders.showKeyVirtualProductPurchased']);
 
-    Route::get('orders/comment/{order_id}', ['uses' => 'OrdersController@commentOrder', 'as' => 'orders.comment']);
+  Route::get('orders/comment/{order_id}', ['uses' => 'OrdersController@commentOrder', 'as' => 'orders.comment']);
 
-    Route::post('orders/storeComment', ['uses' => 'OrdersController@storeComment', 'as' => 'orders.store_comment']);
+  Route::post('orders/storeComment', ['uses' => 'OrdersController@storeComment', 'as' => 'orders.store_comment']);
 
-    //Rates
-    Route::post('rates/seller', ['uses' => 'OrdersController@rateSeller', 'as' => 'orders.rate_seller']);
+  //Rates
+  Route::post('rates/seller', ['uses' => 'OrdersController@rateSeller', 'as' => 'orders.rate_seller']);
 
-    Route::post('rates/product', ['uses' => 'OrdersController@rateProduct', 'as' => 'orders.rate_seller']);
+  Route::post('rates/product', ['uses' => 'OrdersController@rateProduct', 'as' => 'orders.rate_seller']);
 
-    //Freeproducts
-    Route::put('freeproducts/suscribe/{id}', ['uses' => 'FreeProductsController@suscribe', 'as' => 'freeproducts.suscribe']);
+  //Freeproducts
+  Route::put('freeproducts/suscribe/{id}', ['uses' => 'FreeProductsController@suscribe', 'as' => 'freeproducts.suscribe']);
 
-    Route::get('myFreeProducts', ['uses' => 'FreeProductsController@myFreeProducts', 'as' => 'freeproducts.my_free_products']);
+  Route::get('myFreeProducts', ['uses' => 'FreeProductsController@myFreeProducts', 'as' => 'freeproducts.my_free_products']);
 
-    //Buy Points
-    Route::get('get/points', ['uses' => 'PaypalController@buyPoints', 'as' => 'paypal.buy_points']);
+  //Buy Points
+  Route::get('get/points', ['uses' => 'PaypalController@buyPoints', 'as' => 'paypal.buy_points']);
 
-    Route::post('get/points/post', ['uses' => 'PaypalController@postPayment', 'as' => 'paypal.post_payment']);
+  Route::post('get/points/post', ['uses' => 'PaypalController@postPayment', 'as' => 'paypal.post_payment']);
 });
+
+
+
+
+
 
 //Acceso solo Empresas
 Route::group(['roles' => ['business', 'nonprofit', 'admin'], 'middleware' => ['auth', 'roles']], function () {
+  Route::get('modalAllKeys', ['uses' => 'VirtualProductsController@modalAllKeys', 'as' => 'virtualproducts.modalAllKeys']);
 
-    Route::resource('productsGroup', 'ProductsGroupController');
+  Route::get('showAllKeys/{id}', ['uses' => 'VirtualProductsController@showAllKeys', 'as' => 'virtualproducts.showAllKeys']);
 
-    Route::get('products/create', ['uses' => 'ProductsController@create', 'as' => 'products.create']);
+  Route::get('deleteKey/{id}', ['uses' => 'VirtualProductsController@deleteKey', 'as' => 'virtualproducts.deleteKey']);
 
-    Route::get('products/{id}/edit', ['uses' => 'ProductsController@edit', 'as' => 'products.edit']);
+  Route::get('orders/usersOrders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.pendingOrders']);
 
-    Route::get('products/downloadExample', ['uses' => 'ProductsController@downloadExample', 'as' => 'products.downloadExample']);
+  //filtered by dates
+  Route::post('orders/usersOrders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.pendingOrders']);
 
-    Route::post('products', ['uses' => 'ProductsController@store', 'as' => 'products.store']);
+  Route::get('orders/start/{order_id}', ['uses' => 'OrdersController@startOrder', 'as' => 'orders.start']);
 
-    Route::post('products/upload', ['uses' => 'ProductsController@upload', 'as' => 'products.upload']);
+  Route::get('orders/send/{order_id}', ['uses' => 'OrdersController@sendOrder', 'as' => 'orders.send']);
 
-    Route::post('products/upload_key', ['uses' => 'ProductsController@upload_key', 'as' => 'products.upload_key']);
+  Route::get('virtualDelivery/{orderId}/{productId}', ['uses' => 'OrdersController@deliveryVirtualProduct', 'as' => 'orders.virtualDelivery']);
 
-    Route::post('products/upload_software', ['uses' => 'ProductsController@upload_software', 'as' => 'products.upload_software']);
+  Route::get('freeproducts/{OrderId}/create', ['uses' => 'FreeProductsController@create', 'as' => 'freeproducts.create']);
 
-    Route::put('products/{id}', ['uses' => 'ProductsController@update', 'as' => 'products.update']);
-
-    Route::get('modalAllKeys', ['uses' => 'VirtualProductsController@modalAllKeys', 'as' => 'virtualproducts.modalAllKeys']);
-
-    Route::get('showAllKeys/{id}', ['uses' => 'VirtualProductsController@showAllKeys', 'as' => 'virtualproducts.showAllKeys']);
-
-    Route::get('deleteKey/{id}', ['uses' => 'VirtualProductsController@deleteKey', 'as' => 'virtualproducts.deleteKey']);
-
-    Route::post('products/change/status/{id}', ['uses' => 'ProductsController@changeStatus', 'as' => 'products.change_status']);
-
-    Route::get('orders/usersOrders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.pendingOrders']);
-
-    //filtered by dates
-    Route::post('orders/usersOrders', ['uses' => 'OrdersController@usersOrders', 'as' => 'orders.pendingOrders']);
-
-    Route::get('orders/start/{order_id}', ['uses' => 'OrdersController@startOrder', 'as' => 'orders.start']);
-
-    Route::get('orders/send/{order_id}', ['uses' => 'OrdersController@sendOrder', 'as' => 'orders.send']);
-
-    Route::get('virtualDelivery/{orderId}/{productId}', ['uses' => 'OrdersController@deliveryVirtualProduct', 'as' => 'orders.virtualDelivery']);
-
-    Route::get('freeproducts/{OrderId}/create', ['uses' => 'FreeProductsController@create', 'as' => 'freeproducts.create']);
-
-    Route::post('freeproducts', ['uses' => 'FreeProductsController@store', 'as' => 'freeproducts.store']);
-
-    Route::get('products/myProducts', ['uses' => 'ProductsController@myProducts', 'as' => 'products.myProducts']);
-
-    Route::post('/products/delete_img', ['uses' => 'ProductsController@deleteImg', 'as' => 'products.deleteImg']);
+  Route::post('freeproducts', ['uses' => 'FreeProductsController@store', 'as' => 'freeproducts.store']);
 });
 
 // Acceso solo a Wpanel
 Route::group(['prefix' => 'wpanel', 'roles' => 'admin', 'middleware' => ['auth', 'roles']], function () {
 
-    Route::resource('/', 'WpanelController');
+  Route::resource('/', 'WpanelController');
 
-    Route::resource('category', 'CategoriesController');
+  Route::resource('category', 'CategoriesController');
 
-    Route::post('category/upload', ['uses' => 'CategoriesController@upload', 'as' => 'category.upload']);
+  Route::post('category/upload', ['uses' => 'CategoriesController@upload', 'as' => 'category.upload']);
 
-    Route::get('categories', ['uses' => 'CategoriesController@showList', 'as' => 'categories']);
+  Route::get('categories', ['uses' => 'CategoriesController@showList', 'as' => 'categories']);
 
-    Route::resource('productsdetails', 'ProductDetailsController');
+  Route::resource('productsdetails', 'ProductDetailsController');
 
-    Route::get('features', ['uses' => 'ProductDetailsController@index', 'as' => 'features']);
+  Route::get('features', ['uses' => 'ProductDetailsController@index', 'as' => 'features']);
 
-    Route::resource('profile', 'CompanyController');
+  Route::resource('profile', 'CompanyController');
 
+  Route::resource('productsGroup', 'ProductsGroupController');
+
+  Route::get('products/create', ['uses' => 'ProductsController@create', 'as' => 'products.create']);
+
+  Route::get('products/{id}/edit', ['uses' => 'ProductsController@edit', 'as' => 'products.edit']);
+
+  Route::get('products/downloadExample', ['uses' => 'ProductsController@downloadExample', 'as' => 'products.downloadExample']);
+
+  Route::post('products', ['uses' => 'ProductsController@store', 'as' => 'products.store']);
+
+  Route::post('products/upload', ['uses' => 'ProductsController@upload', 'as' => 'products.upload']);
+
+  Route::post('products/upload_key', ['uses' => 'ProductsController@upload_key', 'as' => 'products.upload_key']);
+
+  Route::post('products/upload_software', ['uses' => 'ProductsController@upload_software', 'as' => 'products.upload_software']);
+
+  Route::put('products/{id}', ['uses' => 'ProductsController@update', 'as' => 'products.update']);
+
+  Route::post('products/change/status/{id}', ['uses' => 'ProductsController@changeStatus', 'as' => 'products.change_status']);
+
+  Route::get('products/myProducts', ['uses' => 'ProductsController@myProducts', 'as' => 'products.myProducts']);
+
+  Route::post('/products/delete_img', ['uses' => 'ProductsController@deleteImg', 'as' => 'products.deleteImg']);
 });
+
+
+
+
+
+
+
+
 
 /*
  * WISH LISTS
@@ -207,20 +218,20 @@ Route::group(['prefix' => 'wpanel', 'roles' => 'admin', 'middleware' => ['auth',
 
 Route::group(['prefix' => 'wishes', 'roles' => array_keys(trans('globals.roles')), 'middleware' => ['auth', 'roles']], function () {
 
-    //create
-    Route::get('/create', ['uses' => 'OrdersController@createWishList', 'as' => 'orders.create_wish_list']);
+  //create
+  Route::get('/create', ['uses' => 'OrdersController@createWishList', 'as' => 'orders.create_wish_list']);
 
-    //add into a specific wish list by id
-    Route::get('/{id}/products', ['uses' => 'OrdersController@showWishList', 'as' => 'orders.show_wish_list_by_id']);
+  //add into a specific wish list by id
+  Route::get('/{id}/products', ['uses' => 'OrdersController@showWishList', 'as' => 'orders.show_wish_list_by_id']);
 
-    //list
-    Route::get('/', ['uses' => 'OrdersController@showWishList', 'as' => 'orders.show_wish_list']);
+  //list
+  Route::get('/', ['uses' => 'OrdersController@showWishList', 'as' => 'orders.show_wish_list']);
 
-    //user directory
-    Route::get('/directory', ['uses' => 'OrdersController@wishListDirectory', 'as' => 'orders.show_list_directory']);
+  //user directory
+  Route::get('/directory', ['uses' => 'OrdersController@wishListDirectory', 'as' => 'orders.show_list_directory']);
 
-    //store
-    Route::post('/store', ['uses' => 'OrdersController@storeWishList', 'as' => 'orders.store_list']);
+  //store
+  Route::post('/store', ['uses' => 'OrdersController@storeWishList', 'as' => 'orders.store_list']);
 
 });
 
@@ -238,6 +249,13 @@ Route::put('user/orders/updateQuantity/{detailId}/{newQuantity}', ['uses' => 'Or
 
 //points push notifications
 Route::get('getPoints', 'UserController@getPoints');
+
+
+
+
+
+
+
 
 // Ramon
 Route::get('modalDetailsProductCart/', ['uses' => 'OrdersController@modalDetailsProductCart', 'as' => 'orders.modalDetailsProductCart']);
@@ -268,6 +286,12 @@ Route::get('user/notices/{type?}', 'NoticesController@push');
 
 Route::resource('user/notices', 'NoticesController');
 
+
+
+
+
+
+
 //Rutas Resource de los modelos basicos generados
 Route::resource('freeproductparticipants', 'FreeProductParticipantsController');
 
@@ -289,6 +313,12 @@ Route::get('payment/status', ['uses' => 'PaypalController@getPaymentStatus', 'as
 
 //Octasan Delete Fast Mail test
 Route::get('mailTest', 'OrdersController@mailtest');
+
+
+
+
+
+
 
 //About Controller
 Route::get('contact', ['as' => 'contact', 'uses' => 'AboutController@create']);
